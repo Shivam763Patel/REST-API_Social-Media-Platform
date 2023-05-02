@@ -25,4 +25,12 @@ module.exports.policies = {
     'login': true
 
   },
+
+  UserController:{
+
+    'editUserProfile': 'isRole',
+    'changePassword': 'isRole',
+    'allPost':'isRole'
+
+  },
 };

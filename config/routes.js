@@ -23,6 +23,19 @@ module.exports.routes = {
 
   'post /auth/user/register':'AuthController.register',
   'post /auth/user/login':'AuthController.login',
+
+  //User Controller 
+  //Edit User Profile
+  'put /auth/user/profile/:id':'UserController.editUserProfile',
+
+  //Change User Password
+  'put /auth/user/changePassword/:id':'UserController.changePassword',
+
+  //User: Create POST
+  'post /auth/user/post/:id':'PostController.createPost',
+
+  //User: List of post latest first with pagination
+  'get /auth/user/allPost/':'PostController.userpostList'
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

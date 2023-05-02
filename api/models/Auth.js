@@ -41,6 +41,11 @@ module.exports = {
 
       type: 'string'
     },
+
+    userid:{
+      collection: 'post',
+      via: 'userid'
+    },
     
     isRole:{
       type: 'boolean',
