@@ -50,6 +50,11 @@ module.exports = {
     isRole:{
       type: 'boolean',
       defaultsTo: false
+    },
+
+    likes:{
+      collection: 'like',
+      via: 'users'
     }
 
 

@@ -8,7 +8,7 @@ module.exports = async (req,res,proceed) => {
            {
             
                const token  = req.cookies.tokenall
-            //    console.log(token)
+                console.log(token)
         
                const jwt_secret=process.env.JWT_KEY || 'secret'
             //    console.log('jwt data',jwt_secret)
@@ -17,7 +17,7 @@ module.exports = async (req,res,proceed) => {
             //    console.log('auth data',decoded)
     
                
-               if(decoded.isRole!== true) {
+               if(decoded.isRole == true) {
                  
                 return  res.status(401).send({
                     message: 'Please Login with valid credentials !'

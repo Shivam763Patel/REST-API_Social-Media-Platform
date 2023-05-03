@@ -88,7 +88,7 @@ module.exports = {
             {
               email: userData.email,
               authid: userData.id,
-              isrole: userData.isrole,
+              isRole: userData.isRole,
             },
 
             jwt_secret,

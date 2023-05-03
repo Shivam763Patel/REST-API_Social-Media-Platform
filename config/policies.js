@@ -30,7 +30,9 @@ module.exports.policies = {
 
     'editUserProfile': 'isRole',
     'changePassword': 'isRole',
-    'allPost':'isRole'
+    'userpostList':'isRole',
+    'userpostListNew':'isRole',
+    'likepost':'isRole'
 
   },
 };

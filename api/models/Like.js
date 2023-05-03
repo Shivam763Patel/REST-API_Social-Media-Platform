@@ -7,30 +7,20 @@
 
 module.exports = {
 
-  tableName: 'SMP_API_POST',
-
-  attributes: {
-
-    userid:{
-
-      model:'Auth'
-
+    tableName: 'SMP_API_LIKETABLE',
+  
+    attributes: {
+  
+      users:{
+  
+        model:'Auth'
+  
+      }
+  
+     
+  
     },
-
-    image:{
-
-      type: 'string'
-    },
-
-    description:{
-
-      type: 'string'
-
-    },
-
-   
-
-  },
-
-};
-
+  
+  };
+  
+  

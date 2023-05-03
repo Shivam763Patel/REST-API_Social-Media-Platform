@@ -112,8 +112,52 @@ module.exports = {
             
         },
 
+        likepost : async (req,res) => {
 
+            const id = req.params.id
+            const { userid } = req.body
+        
+            try
+            {
+                
+                const post = await Post.findOne({id: id})
+                
+                const like = post.likes;
+                if(like)
+                {
+                    const likedPost = await post.create({
+                        likeid: userid,
+      
+                    }).fetch();
+                
+                    await Post.updateOne({ id: likdid }, { likes: like + 1 });
+                
+                    return res.status().json({
+                        Message: "Post liked by user",
+                        PostData: likedPost,
+                    });
+        
+        
+                }
+                else{
+                        
 
+                }
     
-};
+            }
+                catch(err){
+                    console.log(err);
+                    res.status(422).send({
+            
+            
+                    message: 'Something went wrong,please try again !'
+            
+            
+                  })
+                }
+
+},
+
+
+}
 

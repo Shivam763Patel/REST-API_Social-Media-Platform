@@ -35,7 +35,16 @@ module.exports.routes = {
   'post /auth/user/post/:id':'PostController.createPost',
 
   //User: List of post latest first with pagination
-  'get /auth/user/allPost/':'PostController.userpostList'
+  'get /auth/user/allPost/':'PostController.userpostList',
+
+  //User: List of post latest first with pagination in user 
+  'get /auth/user/allPostUser/:id':'UserController.userpostListNew',
+
+  //User: Post done
+  'put /auth/user/postList/:id': 'PostController.likepost',
+
+  //User: Comment on post
+  'put /auth/user/post/comemnt': 'CommentController.userComment'
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

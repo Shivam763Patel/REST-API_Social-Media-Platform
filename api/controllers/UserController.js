@@ -97,5 +97,33 @@ if (password === confirmpassword)
 },
 
 
-   
+userpostListNew: async(req,res) => {
+
+  const id = req.params.id
+  console.log('user id data..',id)
+try{
+  const { page, limit } = req.query
+
+    await Auth.find({id: id})
+    .select('username').populate('userid')
+    
+    .then(result=> {
+
+    res.status(200).send({
+      success: true,
+      User: result,
+      message: "User with post details !",
+    });
+
+  })
+
+}
+catch (err) {
+  console.log(err);
+  res.status(500).send({
+    message: "Something went wrong,please try again",
+  });
+}
+}
+
 };
