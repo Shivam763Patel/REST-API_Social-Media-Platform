@@ -7,8 +7,22 @@
 
 module.exports = {
 
+  tableName: 'SMP_API_COMMENTTABLE',
   attributes: {
 
+
+    users: {
+        model: "Auth"
+    },
+
+    post: {
+        model: "Post"
+    },
+    
+    comment: {
+        type: "string",
+        required: true,
+    },
 
   },
 

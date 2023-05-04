@@ -55,8 +55,22 @@ module.exports = {
     likes:{
       collection: 'like',
       via: 'users'
-    }
+    },
 
+    follower:{ 
+      collection: "Follow", 
+      via: "follow" 
+    },
+
+    following:{ 
+      collection: "Follow", 
+      via: "followby" 
+    },
+
+    comment:{
+      collection: 'Comment',
+      via:'users'
+    }
 
 
   },

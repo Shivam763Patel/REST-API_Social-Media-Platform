@@ -5,6 +5,7 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 const cloudinary = require("cloudinary").v2;
+const ObjectId = require('mongodb').ObjectId;
 
 module.exports = {
   
@@ -85,7 +86,7 @@ module.exports = {
                 const result=await Post.find()
                 .skip(skip)
                 .limit(limit)
-                .select(['description' ,'image'])
+                .select(['description' ,'image','likes'])
                 .sort([
                     { createdAt: 'DESC' }
                   ])
@@ -114,49 +115,58 @@ module.exports = {
 
         likepost : async (req,res) => {
 
-            const id = req.params.id
-            const { userid } = req.body
-        
-            try
-            {
-                
-                const post = await Post.findOne({id: id})
-                
-                const like = post.likes;
-                if(like)
-                {
-                    const likedPost = await post.create({
-                        likeid: userid,
-      
-                    }).fetch();
-                
-                    await Post.updateOne({ id: likdid }, { likes: like + 1 });
-                
-                    return res.status().json({
-                        Message: "Post liked by user",
-                        PostData: likedPost,
-                    });
-        
-        
-                }
-                else{
-                        
+            const userid = req.params.id
+            
+            console.log("user id",userid)
 
-                }
-    
+            const { postid } = req.body
+            console.log("post id",postid)
+
+
+            const isPost = await Post.findOne({id: postid })
+
+                if (!isPost) {
+                    return res.status(401).json({
+                        Message: "Post Not Found.",
+                    });
             }
-                catch(err){
-                    console.log(err);
-                    res.status(422).send({
+
+            const alreadyLike = await Like.findOne({
+                id: 'ObjectId',
+                users: userid,
+                post: postid,
+            });
+
+            console.log('user post like details',alreadyLike)
+
+            let like = isPost.likes;
+
+            if (alreadyLike) 
+            {
+                 await Like.destroy(alreadyLike.id);
+                 await Post.updateOne({ id: postid }, { likes: like - 1 });
+                 return res.status(201).json({
+                 Message: "Post is disliked !",
+            });
             
-            
-                    message: 'Something went wrong,please try again !'
-            
-            
-                  })
-                }
+            }
+
+            const likedPost = await Like.create({
+                users: userid,
+                post: postid,
+
+            }).fetch();
+    
+            await Post.updateOne({ id: postid }, { likes: like + 1 });
+
+            return res.status(200).json({
+                Message: "Post liked !",
+                Post: likedPost,
+            });
+
 
 },
+
 
 
 }

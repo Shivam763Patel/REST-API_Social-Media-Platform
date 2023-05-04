@@ -28,7 +28,18 @@ module.exports = {
 
     },
 
-   
+    likes:{
+
+      type:'json',
+      columnType:'array'
+    
+    },
+    
+    comment:{
+
+      collection: 'Comment',
+      via:'post'
+    }
 
   },
 

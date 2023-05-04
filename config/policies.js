@@ -29,10 +29,31 @@ module.exports.policies = {
   UserController:{
 
     'editUserProfile': 'isRole',
-    'changePassword': 'isRole',
+    'changePassword': 'isRole'
+  },
+
+  PostController:{
     'userpostList':'isRole',
     'userpostListNew':'isRole',
-    'likepost':'isRole'
+    'likepost':'isRole',
 
   },
+
+
+  FollowController:{
+
+    'followuser':'isRole'
+
+  },
+
+  CommentController:{
+
+    'userComment':'isRole'
+
+  },
+
+
+
+
+
 };

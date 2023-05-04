@@ -41,10 +41,16 @@ module.exports.routes = {
   'get /auth/user/allPostUser/:id':'UserController.userpostListNew',
 
   //User: Post done
-  'put /auth/user/postList/:id': 'PostController.likepost',
+  'post /auth/user/postList/:id': 'PostController.likepost',
+
+  //User: follow user
+  'post /auth/user/follow/:id': 'FollowController.followuser',
 
   //User: Comment on post
-  'put /auth/user/post/comemnt': 'CommentController.userComment'
+  'post /auth/user/post/comment/:id': 'CommentController.userComment',
+
+  //User: View other user profile
+  'get /auth/user/profile/:id':'UserController.userpostListNew',
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

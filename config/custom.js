@@ -6,9 +6,11 @@
  *
  * For more information on custom configuration, visit:
  * https://sailsjs.com/config/custom
- */
+ */ 
+
 
 module.exports.custom = {
+
 
   /***************************************************************************
   *                                                                          *
@@ -19,4 +21,6 @@ module.exports.custom = {
   // stripeSecret: 'sk_test_Zzd814nldl91104qor5911gjald',
   // …
 
-};
+
+
+}
