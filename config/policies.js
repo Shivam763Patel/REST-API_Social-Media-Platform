@@ -20,7 +20,7 @@ module.exports.policies = {
   // '*': true,
   AuthController: {
 
-    '*': 'isRole',
+    '*': 'isStatus',
     'register': true,
     'login': true
 
@@ -28,31 +28,44 @@ module.exports.policies = {
 
   UserController:{
 
-    'editUserProfile': 'isRole',
-    'changePassword': 'isRole'
+    'editUserProfile': 'isStatus',
+    'changePassword': 'isStatus',
+    'logout':'isStatus'
   },
 
   PostController:{
-    'userpostList':'isRole',
-    'userpostListNew':'isRole',
-    'likepost':'isRole',
+    'userpostList':'isStatus',
+    'userpostListNew':'isStatus',
+    'likepost':'isStatus',
+    'createPost':'isStatus'
 
   },
 
 
   FollowController:{
 
-    'followuser':'isRole'
+    'followuser':'isStatus'
 
   },
 
   CommentController:{
 
-    'userComment':'isRole'
+    'userComment':'isStatus'
 
   },
 
+  AdminController: {
 
+    '*': 'isAdmin',
+    'register': true,
+    'login': true
+
+  },
+
+  AdminController:{
+
+    'viewuser': 'isAdmin'
+  }
 
 
 

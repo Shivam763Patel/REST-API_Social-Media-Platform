@@ -131,8 +131,8 @@ module.exports = {
                     });
             }
 
-            const alreadyLike = await Like.findOne({
-                id: 'ObjectId',
+            const alreadyLike = await Like.find({
+          
                 users: userid,
                 post: postid,
             });
@@ -143,7 +143,7 @@ module.exports = {
 
             if (alreadyLike) 
             {
-                 await Like.destroy(alreadyLike.id);
+                // await Like.destroy(alreadyLike.userid);
                  await Post.updateOne({ id: postid }, { likes: like - 1 });
                  return res.status(201).json({
                  Message: "Post is disliked !",

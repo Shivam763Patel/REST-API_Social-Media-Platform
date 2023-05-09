@@ -51,6 +51,24 @@ module.exports.routes = {
 
   //User: View other user profile
   'get /auth/user/profile/:id':'UserController.userpostListNew',
+
+  //User: Logout
+  'get /auth/user/logout': 'UserController.logout',
+
+  //Admin: View other user profile
+  'get /auth/admin/profile/:id':'UserController.adminViewPost',
+
+  //Admin: Register
+  'post /auth/admin/register':'AdminController.register',
+
+  //Admin: Login
+  'post /auth/admin/login':'AdminController.login',
+
+  //Admin: search user by text
+  'post /auth/admin/viewuser':'AdminController.viewuser',
+
+  //Admin: Logout
+  'get /auth/admin/logout': 'AdminController.logout',
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

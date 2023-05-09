@@ -29,7 +29,7 @@ module.exports = {
 
         return res.status(200).json({
             message: "Comment data on post",
-            comment: commentData,
+            data: commentData,
         });
     },
 

@@ -17,18 +17,18 @@ module.exports = async (req,res,proceed) => {
             //    console.log('auth data',decoded)
     
                
-               if(decoded.isRole == true) {
+               if(decoded.isActive === false) {
                  
                 return  res.status(401).send({
                     message: 'Please Login with valid credentials !'
                    
                  })
 
-             }
-
+                }
+       
                else
                {
-    
+                req.userData = decoded
                 proceed()
 
                }

@@ -77,31 +77,46 @@ module.exports = {
       console.log("admin id", userData.id);
       console.log("admin id", userData.password);
       //Validate password
-      bcrypt.compare(password, userData.password).then((result) => {
+      bcrypt.compare(password, userData.password).then(async (result) => {
         if (result) {
           console.log("email id of user", userData.email);
           console.log("id of user", userData.id);
 
           //JWT Authentication
           const jwt_secret = process.env.JWT_KEY || "secret";
+
           const token = jwt.sign(
             {
               email: userData.email,
               authid: userData.id,
+              isActive: userData.isActive,
               isRole: userData.isRole,
             },
-
+       
             jwt_secret,
-            { expiresIn: "12h" }
-          );
+            { expiresIn: "12h" },
 
-          //Store Token in cookie named tokenall
-          const result = { email: userData.email };
-          res.cookie("tokenall", token, { httpOnly: true }).status(200).send({
-            success: true,
-            data: result,
-            message: "Logged in successfull !",
-          });
+   
+          );
+         //Store Token in cookie named tokenall
+         res.cookie("tokenall", token, { httpOnly: true })
+
+          const updateUser = await Auth.updateOne({
+            username: username
+            
+          }).set({
+
+            isActive: true
+          })  
+
+          if(updateUser){
+   
+            return res.status(200).send({
+              success: true,
+              data: result,
+              message: "Logged in successfull !",
+            });
+          }
         } else {
           return res.status(500).send({
             message: "Please, enter valid credential to login !",

@@ -1,5 +1,5 @@
 /**
- * Auth.js
+ * Admin.js
  *
  * @description :: A model definition represents a database table/collection.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
@@ -9,17 +9,9 @@ const bcrypt = require('bcrypt')
 
 module.exports = {
 
-  tableName: 'SMP_API_USER',
+  tableName: 'SMP_API_ADMIN',
 
   attributes: {
-
-    email:
-    {
-        type:'string',
-        isEmail: true,
-        required: true
-
-    },
 
     username: {
       type:'string',
@@ -28,7 +20,6 @@ module.exports = {
 
     },
 
-  
     password:
     {
         type: 'string',
@@ -37,43 +28,12 @@ module.exports = {
 
     },
 
-    isActive:{
-
-      type: 'boolean',
-      defaultsTo: false
-    },
-
-    image:{
-
-      type: 'string'
-    },
-
-    userid:{
-      collection: 'post',
-      via: 'userid'
-    },
-  
-    likes:{
-      collection: 'like',
-      via: 'users'
-    },
-
-    follower:{ 
-      collection: "Follow", 
-      via: "follow" 
-    },
-
-    following:{ 
-      collection: "Follow", 
-      via: "followby" 
-    },
-
-    comment:{
-      collection: 'Comment',
-      via:'users'
+    isAdmin:{
+      type:'boolean',
+      defaultsTo: true
     }
 
-
+    
   },
 
   beforeCreate: function(values, cb) {
@@ -87,7 +47,6 @@ module.exports = {
     });
     
 },
-
 
 };
 
